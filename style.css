@@ -1,4 +1,7 @@
-/* Basic reset */
+/* ================================
+   GLOBAL
+================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,116 +11,422 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: linear-gradient(135deg, #74c365, #3e9f47, #1f7a3a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
 }
 
-/* Common section styling */
-section {
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+main {
+    width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ---------------- START PAGE ---------------- */
+
+/* ================================
+   ALL SECTIONS
+================================ */
+
+section {
+    width: 90%;
+    max-width: 700px;
+    min-height: 650px;
+    border-radius: 30px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================================
+   SECTION 1 — FRONT PAGE
+================================ */
 
 #front-page {
-    background: #111;
+    display: block;
+    text-align: center;
 }
 
 .Dashboard {
-    text-align: center;
-    padding: 40px;
+    min-height: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
-.Dashboard h1 {
-    font-size: 50px;
-    margin-bottom: 30px;
+
+/* Game title */
+
+.Dashboard::before {
+    content: "🐍 SNAKE GAME";
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.Dashboard h3 {
-    margin: 15px;
-}
 
-/* Buttons */
-button {
-    padding: 12px 25px;
+/* Start button */
+
+#start-btn {
+    padding: 18px 55px;
     border: none;
-    border-radius: 8px;
-    font-size: 18px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ffcc00, #ff9500);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
 }
 
-/* ---------------- GAME PAGE ---------------- */
+#start-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+#start-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Highest score */
+
+#high-score {
+    padding: 18px 35px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    font-size: 22px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Game level on front page */
+
+.Dashboard h3:last-child {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+
+/* ================================
+   SECTION 2 — GAME PAGE
+================================ */
 
 #game-page {
     display: none;
+    text-align: center;
 }
 
+
+/* Score and level area */
+
 .Gamescreen {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .Gamescreen h1 {
-    margin: 10px;
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.25);
 }
 
-/* Game board */
-.game_board {
+#score {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* ================================
+   GAME BOARD
+================================ */
+
+#game-board {
     width: 500px;
     height: 500px;
-    margin-top: 20px;
-    border: 3px solid white;
-    background: #222;
+    max-width: 100%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+
+    background-color: #78c850;
+
+    border: 8px solid #315d32;
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        inset 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ---------------- GAME OVER PAGE ---------------- */
+
+/* Individual cells */
+
+#game-board div {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ================================
+   SNAKE
+================================ */
+
+.snake {
+    background: linear-gradient(135deg, #0b6623, #32cd32);
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+
+/* Make snake head slightly different */
+
+.snake:first-child {
+    background: #145a20;
+}
+
+
+/* ================================
+   FOOD / APPLE
+================================ */
+
+.food {
+    background: radial-gradient(circle at 35% 30%, #ff7777, #ff1f1f 55%, #a50000);
+    border-radius: 50%;
+    transform: scale(0.75);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================
+   CONTROLS
+================================ */
+
+#controls {
+    /* margin-top: 25px; */
+    #controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.middle-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#controls button {
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 18px;
+    font-size: 28px;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+
+    /* Mobile touch */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#controls button:active {
+    transform: scale(0.9);
+}
+
+#pause-btn {
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+}
+
+#controls > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+/* All control buttons */
+
+#controls button {
+    min-width: 70px;
+    padding: 12px 15px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(135deg, #ffffff, #dff5df);
+    color: #206b2a;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+
+    transition: 0.2s;
+}
+
+
+/* Hover */
+
+#controls button:hover {
+    transform: translateY(-3px);
+}
+
+
+/* Click */
+
+#controls button:active {
+    transform: scale(0.92);
+}
+
+
+/* Pause button */
+
+#pause-btn {
+    background: linear-gradient(135deg, #ffcc00, #ff9500) !important;
+    color: white !important;
+}
+
+
+/* ================================
+   SECTION 3 — GAME OVER
+================================ */
 
 #last-page {
     display: none;
-}
-
-.over {
     text-align: center;
 }
 
+.over {
+    min-height: 570px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+/* Game Over heading */
+
 .over h1 {
-    font-size: 45px;
-    margin-bottom: 25px;
+    font-size: 55px;
+    color: #ff5252;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.over h3 {
-    margin: 15px;
+
+/* Final score */
+
+#final-score {
+    font-size: 28px;
+    padding: 18px 40px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.25);
 }
 
-.food{
-    background-color: red;
+
+/* Restart */
+
+#restart-btn {
+    padding: 18px 45px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #00c853, #64dd17);
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    transition: 0.3s;
 }
 
-.snake{
-    background-color: green;
+#restart-btn:hover {
+    transform: translateY(-4px) scale(1.05);
 }
 
-#game-board {
-    display: grid;
-    grid-template-columns: repeat(20, 20px);
-    grid-template-rows: repeat(20, 20px);
-    width: 400px;
-    height: 400px;
+#restart-btn:active {
+    transform: scale(0.95);
 }
 
-#game-board div {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #333;
-    box-sizing: border-box;
-}
 
-.snake {
-    background-color: green;
-}
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
 
-.food {
-    background-color: red;
+@media (max-width: 600px) {
+
+    section {
+        width: 95%;
+        padding: 20px;
+        min-height: 600px;
+    }
+
+    .Dashboard::before {
+        font-size: 35px;
+    }
+
+    #game-board {
+        width: 90vw;
+        height: 90vw;
+        max-width: 450px;
+        max-height: 450px;
+    }
+
+    .Gamescreen h1 {
+        font-size: 17px;
+        padding: 10px;
+    }
+
+    #controls button {
+        min-width: 60px;
+        padding: 10px;
+    }
+
+    .over h1 {
+        font-size: 42px;
+    }
 }
