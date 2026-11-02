@@ -4,7 +4,7 @@ A classic Snake Game built using HTML, CSS, and JavaScript. Control the snake, c
 
 🎮 Live Demo
 
-"Play Snake Game" (YOUR_LIVE_DEMO_LINK)
+"Play Snake Game" (https://moni3025.github.io/Snake-Game/)
 
 ✨ Features
 
